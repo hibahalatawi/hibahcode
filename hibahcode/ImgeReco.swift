@@ -168,8 +168,8 @@ struct ImgeReco: View  {
                 .sheet(isPresented: $isPresenting){
                     ImagePicker(uiImage: $uiImage, isPresenting:  $isPresenting, sourceType: $sourceType)
                         .onDisappear{
-                            if uiImage != nil {
-                                Image(uiImage: image)
+                            if let uiImage = uiImage {
+                                Image(uiImage: uiImage)
                                     .resizable()
                                 //  .scaledToFit()
                                     .frame(width: 350, height:360)
