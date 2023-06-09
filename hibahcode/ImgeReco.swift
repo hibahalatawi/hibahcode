@@ -9,176 +9,126 @@ import SwiftUI
 import CoreData
 import CoreML
 import Vision
+
 struct ImgeReco: View  {
-        @State var isPresenting: Bool = false
-        @State var uiImage: UIImage?
-        @State private var showPhotoOptions: Bool = false
-        @State private var image: UIImage?
-        @State private var showSheet: Bool = false
-        @State private var ishownhome: Bool = false
-        @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
-        @State private var classificationLabel: String = ""
-        @State private var count : Int = 0
-       //@ObservedObject var reademg:ImageClassifier
+    @State var isPresenting: Bool = false
+    @State var uiImage: UIImage?
+    @State private var showPhotoOptions: Bool = false
+    @State private var showSheet: Bool = false
+    @State private var ishownhome: Bool = false
+    @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var classificationLabel: String = ""
+    @State private var count : Int = 0
+    @State private var classified : Bool = false
+    @State private var detection: Detection?
+    
+    @Environment(\.managedObjectContext) private var viewContext
+    
         
-        
-        private let classifier = VisionClassifier(mlModel: MobileNetV23().model)
-        @State var isHideText = false
-        @State  private var languages :[String] =
-        [NSLocalizedString("English", comment: ""),
-         NSLocalizedString("Arabic", comment: ""),
-         NSLocalizedString("Chinese", comment: ""),
-         NSLocalizedString("French", comment: ""),
-         NSLocalizedString("Italian", comment: "")]
-        var synthVM = SynthViewModel()
-        //for translate
-        // View Model
-        @ObservedObject var viewModel: ViewModel
-        // to take input from ML result
-        func takeInput(text : String){
-            viewModel.input = text
-        }
-        // Instances of objects
-        @State var viewedLanguages = ViewedLanguages()
-        @State var translation = Translation()
-        
-        // Decides whether to present modal sheet or not
-        @State var isPresented: Bool = false
-        //MARK: - Header
-        let screen = UIScreen.main.bounds
-        // end for translate
-        //to present translation and update it
-        //@State private var translationText: String
-        @State private var coreDataPicture: UIImage? = UIImage(contentsOfFile: "AppIcon")
-        @State private var coreDataResult: String = ""
-        var body: some View {
-            
-            
-            NavigationView {
+    private let classifier = VisionClassifier(mlModel: CoreMLAZ2030().model)
+    
+    
+    
+    var body: some View {
+            VStack {
+//                ZStack {
+//                    Text("Image")
+//                        .font(.largeTitle)
+//                        .fontWeight(.bold)
+//                        .foregroundColor(Color.black)
+//                        .padding(.bottom, -20.0)
+//                        .padding(.leading, -180.0)
+//                }
+                ZStack{
+                    
+                    
+      RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color(red: 0.471, green: 0.76, blue: 0.705), style: StrokeStyle(lineWidth: 2, dash: [9]))
+                    
+                    
+                    
+                    
+                    if let image = uiImage {
+                        Image(uiImage: uiImage!)
+                            .resizable()
+               //.frame(width: 330, height:530)
+                            .cornerRadius(15)
+                        
+                        
+                        // .stroke(Color("CusColor"), style: StrokeStyle(lineWidth: 2, dash: [9]))
+                    } else {
+                        
+                        Button(action: { showSheet.toggle() }) {
+                            Label("Upload a Picture", systemImage: "plus")
+                        }
+                        .accentColor(.white)
+                        .font(Font.custom("SF Pro", size: 18))
+                        .frame(width: 270 , height: 50)
+                        .background(RoundedRectangle(cornerRadius: 15 ).fill(Color(red: 0.465, green: 0.76, blue: 0.701)).opacity(1))
+                        
+                        
+                    }
+                    
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 12)
+           
                 
-                VStack{
-                    
-                    ZStack{
-                        
-                        
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color("CusColor"), style: StrokeStyle(lineWidth: 2, dash: [9]))
-                            .padding(.top, -60.0)
-                        
-                            .overlay(
-                                Group {
-                                    if uiImage != nil {
-                                        Image(uiImage: uiImage!)
-                                            .resizable()
-                                        //  .scaledToFit()
-                                            .frame(width: 350, height:360)
-                                            .cornerRadius(15)
-                                        HStack{
-                                            //الريبلاي
-                                            Button{
-                                                
-                                                ishownhome.toggle()
-                                                
-                                            } label: {
-                                                Image(systemName: "arrow.counterclockwise.circle.fill")
-                                                
-                                            }
-                                            //                                            .padding(.top, 650.0)
-                                            .fontWeight(.regular)
-                                            .font(.system(size: 40))
-                                            .foregroundColor(Color("CusColor"))
-                                            //زر المعلومات
-                                            Button(action:{
-                                                takeInput(text: classificationLabel)
-                                                
-                                                if !viewModel.input.isEmpty {
-                                                    // Calls API translate function to retrieve translation
-                                                    ViewModel().translate(for: viewModel.input, for: viewedLanguages.firstCode, for: viewedLanguages.secondCode) { (results) in
-                                                        viewModel.translation = results.data.translations.first?.translatedText ?? "default value"
-                                                        viewModel.targetLang = viewedLanguages.secondCode
-                                                        
-                                                    }
-                                                    //     translationText = viewModel.translation
-                                                    
-                                                    //                                }
-                                                }
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1 ) {
-                                                    handleData(picture: coreDataPicture, result: coreDataResult, translatedText: viewModel.translation)
-                                                }
-                                            },label: {
-                                                
-                                                Text("hhhhhhhhh")
-                                                
-                                            }).accentColor(.white)
-                                                .font(Font.custom("SF Pro", size: 18))
-                                                .frame(width: 150 , height: 50)
-                                                .background(RoundedRectangle(cornerRadius: 15 ).fill(Color("CusColor")).opacity(1))
-                                            
-                                            
-                                        } .padding(.top, 650.0)
-                                        
-                                        
-                                    }else {
-                                           Button() {
-                                               // open action sheet
-                                               self.showSheet = true
-                                               
-                                           }label: {
-                                               
-                                               Label("Upload a Picture", systemImage: "plus")
-                                               
-                                           }
-                                           .accentColor(.white)
-                                           .font(Font.custom("SF Pro", size: 18))
-                                           .frame(width: 270 , height: 50)
-                                           .background(RoundedRectangle(cornerRadius: 15 ).fill(Color("CusColor")).opacity(1))
-                                           
-                                           
-                                           
-                                       }
-                                       
-                                })
-                            .frame(width: 370.0, height:500.0)
+                if classified {
+                    if let detection = detection {
+                        if detection.label.isEmpty {
+                            Text("Not Classified")
+                                .frame(maxWidth: .infinity)
+                                .foregroundColor(.red)
+                                .font(Font.custom("SF Pro", size: 17))
+                        } else {
+                            Text("\(self.classificationLabel)")
+                                .frame(maxWidth: .infinity)
+                                .accentColor(.white)
+                                .font(Font.custom("SF Pro", size: 17))
+                        }
                     }
                     
-                    .actionSheet(isPresented: $showSheet) {
+                }
+                
+                //.frame(height: 35)
+                
+                if uiImage != nil {
+                    HStack {
+                        Button(action: { showSheet.toggle() }) {
+                            Image(systemName: "arrow.counterclockwise.circle.fill")
+                        }
+                        .fontWeight(.regular)
+                        .font(.system(size: 40))
+                        .foregroundColor(Color(red: 0.465, green: 0.76, blue: 0.701))
                         
-                        ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
-                            .default(Text("Photo Library")) {
-                                // open photo library
-                                self.sourceType = .photoLibrary
-                                self.isPresenting = true
-                                
-                            },
-                            .default(Text("Camera")) {
-                                // open camera
-                                self.sourceType = .camera
-                                self.isPresenting = true
-                                
-                            },
-                            .cancel()
-                        ])
-                        
+                        if let detection = detection {
+                            NavigationLink(destination: InformationView(detection: detection))
+                            {
+                                Text("details")
+                                    .padding()
+                                    .foregroundColor(Color.white)
+                                    .background(Color(red: 0.465, green: 0.76, blue: 0.701))
+                                    .cornerRadius(10)
+                            }
+                        }
+                       
+//                            .background(RoundedRectangle(cornerRadius: 15 ).fill(Color("CusColor")).opacity(1))
                     }
-                    .padding()
-                    
-                }    .navigationBarTitle("Image ")
-                    .padding(.bottom, 80.0)
+                }
+                
             }
-                .sheet(isPresented: $isPresenting){
+//                    .navigationBarTitle("Image")
+                .sheet(isPresented: $isPresenting) {
                     ImagePicker(uiImage: $uiImage, isPresenting:  $isPresenting, sourceType: $sourceType)
-                        .onDisappear{
-                            if let uiImage = uiImage {
-                                Image(uiImage: uiImage)
-                                    .resizable()
-                                //  .scaledToFit()
-                                    .frame(width: 350, height:360)
-                                    .cornerRadius(15)
+                        .onDisappear {
+                            if uiImage != nil {
+                                classify()
                             }
                         }
                     
-                }.padding()
-                .actionSheet(isPresented:$ishownhome ){
+                }
+                .actionSheet(isPresented: $showSheet) {
                     ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
                         .default(Text("Photo Library")) {
                             // open photo library
@@ -193,75 +143,46 @@ struct ImgeReco: View  {
                         .cancel()
                     ])
                 }
-         
-                               }
-            
-            
-            
-                            
-                        
-        @State var didchange = false
-        
-        func handleData(picture: UIImage?, result: String , translatedText: String) {
-            let context = PersistenceController.shared.container.viewContext
-            let newHistory = History(context: context)
-            newHistory.date = Date()
-            
-            let imageData = picture?.jpegData(compressionQuality: 1.0)
-                newHistory.picture = imageData
-                
-            
-            newHistory.result = result
-            newHistory.translatedText = translatedText
-            
-            PersistenceController.shared.save()
-           
-            
-            
-       }
-    }
-            struct ImgeReco_Previews: PreviewProvider {
-                static var previews: some View {
-                    ImgeReco(viewModel: ViewModel())
-                      //  .environment(\.locale, .init(identifier: "en"))
-                 
+        }
+    
+    private func classify() {
+        if let img = self.uiImage {
+            // perform image classification
+            self.classifier?.classify(img) { label, confidence in
+                if confidence > 0.1 {
+                    if let landmark = Landmarkdata.first(where: { $0.tag.contains(label)}) {
+                        self.classificationLabel = label
+                        self.detection = Detection(img: img, label: label, landmark: landmark)
+                        self.classified = true
+                    }
+                    
+                    //handleData(picture: img, result: label)
                 }
             }
-        
-        
-     import AVKit
+        }
+    }
+}
 
-       class SynthViewModel: NSObject {
-         private var speechSynthesizer = AVSpeechSynthesizer()
-         
-         override init() {
-           super.init()
-           self.speechSynthesizer.delegate = self
-         }
-         // ممكن تضيفين متغير ياخذ الللغه من الفيو مثال , code: String في الفانكشن اللي تحت
-           func speak(text: String , code: String) {
-               print("code : \(code)")
-               print("text : \(text)")
-           let utterance = AVSpeechUtterance(string: text)
-             utterance.rate = AVSpeechUtteranceDefaultSpeechRate;
-             utterance.voice = AVSpeechSynthesisVoice(language: code)
-             print(AVSpeechSynthesisVoice.speechVoices())
-           speechSynthesizer.speak(utterance)
-         }
-       }
+struct Detection {
+    var img: UIImage
+    var label: String
+    var landmark: landmark
+}
 
-       extension SynthViewModel: AVSpeechSynthesizerDelegate {
-         func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
-           print("started")
-         }
-         func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didPause utterance: AVSpeechUtterance) {
-           print("paused")
-         }
-         func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didContinue utterance: AVSpeechUtterance) {}
-         func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didCancel utterance: AVSpeechUtterance) {}
-         func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, willSpeakRangeOfSpeechString characterRange: NSRange, utterance: AVSpeechUtterance) {}
-         func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-           print("finished")
-         }
-       }
 
+
+
+
+
+
+
+
+
+
+
+
+struct Previews_ImgeReco_Previews: PreviewProvider {
+    static var previews: some View {
+        ImgeReco()
+    }
+}

@@ -1,49 +1,47 @@
 //
 //  TabBarView.swift
-//  Recognizlator
+//  hibahcode
 //
-//  Created by sara ayed albogami on 21/07/1444 AH.
+//   Created by Ibrahim MOHAMMED on 16/11/1444 AH.
 //
 
 
 import SwiftUI
 
 struct TabBarView: View {
-    
-    var tabs: [TabBarItem]
-    @Binding var selectedTab: TabBarItem
-    
+    let persistenceController = PersistenceController.shared
+
     var body: some View {
         
-            HStack(spacing: 20) {
-                Spacer()
-                ForEach(tabs, id: \.self) { tab in
-                    TabBarItemView(type: tab, selectedTab: $selectedTab)
-                    Spacer()
-                }
+        NavigationView {
+            TabView {
+                ImgeReco()
+                    .tabItem {
+                        Label("camera", systemImage: "camera.viewfinder")
+                    }
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    
+                
+                listOf()
+                    .tabItem {
+                        Label("Explore", systemImage: "safari")
+                    }
+                HistoryView()
+                    .tabItem {
+                        Label("History", systemImage: "doc.richtext")
+                    }
+                paymentview()
+                    .tabItem {
+                        Label("payment", systemImage: "doc.richtext")
+                    }
             }
-            .background(CustomColorz.myColor)
+            .onAppear(){
+                UITabBar.appearance().barTintColor = .white
+            }
+//            .accentColor(Color(red: 0.475, green: 0.764, blue: 0.704))
+            
+        }
     }
 }
 
-extension Color {
-    static let oldPrimaryColor = Color(UIColor.systemIndigo)
-    static let newPrimaryColor = Color("CusColor")
-}
 
-
-struct CustomColorz {
-    static let myColor = Color(("Color"))
-    // Add more here...
-}
-
-extension Color {
-    static let olaadPrimaryColor = Color(UIColor.systemIndigo)
-    static let neewPrimaryColorq = Color("LightGray")
-}
-
-struct TabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarView(tabs: TabBarItem.allCases, selectedTab: .constant(.imageRec))
-    }
-}

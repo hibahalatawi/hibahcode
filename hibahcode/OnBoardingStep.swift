@@ -14,41 +14,33 @@ struct OnBoardingStep {
 }
 
 private let OnBoardingSteps = [
-
-    OnBoardingStep(image: "pic1", title: NSLocalizedString("KNOW THE STORY FROM ONE STEP", comment: ""), description: NSLocalizedString( "Pictures Of Any Historical Landmark And It Will Show You Information About It ", comment: "")),
-OnBoardingStep(image: "pic2", title: NSLocalizedString("TAKE OR UPLOAD PHOTO...",comment: ""), description: NSLocalizedString( "Just Take Or Upload Photo Of The  landmark You Want To Recognize", comment: "")),
-OnBoardingStep(image: "pic3", title: NSLocalizedString(
+    
+    OnBoardingStep(image: "pic1", title: NSLocalizedString("KNOW THE STORY FROM ONE STEP", comment: ""), description: NSLocalizedString( "Pictures of Any Historical Landmark And It Will Show You Information About It ", comment: "")),
+    OnBoardingStep(image: "pic2", title: NSLocalizedString("TAKE oR UPLOAD PHOTO...",comment: ""), description: NSLocalizedString( "Just Take or Upload Photo of The  landmark you Want to Recognize", comment: "")),
+    OnBoardingStep(image: "pic3", title: NSLocalizedString(
  """
-  ...AND HERE IS THE INFORMTION
+  AND HERE IS THE INFORMTION
  """, comment: ""), description: NSLocalizedString( "Your Information Will Be Extracted From Here", comment: ""))]
 
 struct OnBoardingView: View {
+    @Binding var didOnboard: Bool
     @State private var currentStep = 0
-    @State private var isshownhome = false
-    @State private var ishownhome = false
-    init(){
-        UIScrollView.appearance().bounces = false
-    }
+    
+    
+    //    init(){
+    //        UIScrollView.appearance().bounces = false
+    //    }
     
     var body: some View {
         VStack{
             HStack{
                 Spacer()
-                Button{
-                    ishownhome.toggle()
-                } label: {
-                    Text("SKIP")
+                Button("SKIP") {
+                    didOnboard.toggle()
                 }
                 .fontWeight(.bold)
                 .font(Font.custom("SF Pro", size: 20))
-                .foregroundColor(Color(red: 0.972, green: 0.715, blue: 0.178))
-                .padding(20)
-                
-                
-                .fullScreenCover(isPresented:$ishownhome ){
-                   ContentView()
-                  
-                }
+                .foregroundColor(Color(red: 0.471, green: 0.76, blue: 0.702))                .padding(20)
             }
             
             TabView(selection: $currentStep){
@@ -56,27 +48,55 @@ struct OnBoardingView: View {
                     VStack{
                         Image(OnBoardingSteps[step].image)
                             .resizable()
-                            .frame(width:370 ,height: 390)
-                            .padding(.bottom)
+                            .frame(width:375 ,height: 380)
+                            .padding(.bottom, 200.0)
+                        
+                        VStack{
+                            Text(OnBoardingSteps[step].title)
+                                .font(.title2)
+                                .fontWeight(.medium)
+                                .multilineTextAlignment(.center)
+                                .font(Font.custom("SF Pro", size: 24))
+                                .padding(.top, -150.0)
                             
+                        }
                         
-                        Text(OnBoardingSteps[step].title)
-                            .font(.title)
-                            .fontWeight(.medium)
-                            .multilineTextAlignment(.center)
-                            .font(Font.custom("SF Pro", size: 24))
+                        VStack{
+                            
+                            Text(OnBoardingSteps[step].description)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color.gray)
+                                .font(Font.custom("SF Pro", size: 20))
+                                .padding(.horizontal, 32)
+                                .padding(.top, -120.0)
+                        }
                         
-                        
-                        Text(OnBoardingSteps[step].description)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color.gray)
-                            .font(Font.custom("SF Pro", size: 18))
-                            .padding(.horizontal, 32)
-                            .padding(.top, 16)
                     }
                     .tag(step)
                 }}
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            
+            
+            if self.currentStep == OnBoardingSteps.count - 1 {
+                Button{didOnboard.toggle()}
+            label: {
+                Text("Get started")
+                    .fontWeight(.bold)
+            }
+            .padding(16)
+            .font(Font.custom("SF Pro", size: 18))
+            .frame(maxWidth: .infinity)
+            .background(Color(red: 0.471, green: 0.76, blue: 0.705))
+            .cornerRadius(15)
+            .padding(.horizontal, 16)
+            .foregroundColor(.white)
+            .fontWeight(.bold)
+            .buttonStyle(PlainButtonStyle())
+                
+                
+                
+            }
+            
             
             HStack{
                 ForEach(0..<OnBoardingSteps.count) { step in
@@ -84,7 +104,7 @@ struct OnBoardingView: View {
                         Rectangle()
                             .frame(width: 20, height: 10)
                             .cornerRadius(15)
-                            .foregroundColor(Color("myColor"))
+                            .foregroundColor(Color(red: 0.471, green: 0.76, blue: 0.705))
                     }
                     else {
                         Circle()
@@ -95,44 +115,8 @@ struct OnBoardingView: View {
             }
             .padding(.bottom, 24)
             
-            if self.currentStep == OnBoardingSteps.count - 1 {
-                Button{isshownhome.toggle()}
-            label: {
-                Text("Get started")
-                //    .fontWeight(.bold)
-            }
-            .padding(16)
-            .font(Font.custom("SF Pro", size: 18))
-            .frame(maxWidth: .infinity)
-            .background(Color(red: 0.972, green: 0.715, blue: 0.178))
-            .cornerRadius(15)
-            .padding(.horizontal, 16)
-            .foregroundColor(.white)
-            .fontWeight(.bold)
-            .buttonStyle(PlainButtonStyle())
-            .fullScreenCover(isPresented: $isshownhome)
-                {
-                    
-                   ContentView()
-                    
-                    
-                }
-            }
             
-        }
-    }
-    
-}
-struct OnBoardingView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group{
-            OnBoardingView()
-                .environment(\.locale, .init(identifier: "en"))
-            
-            OnBoardingView()
-                .environment(\.locale, .init(identifier: "ar"))
             
         }
     }
 }
-
