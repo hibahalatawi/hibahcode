@@ -11,29 +11,18 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @EnvironmentObject var purchaseManager: PurchaseManager
     @State var selectedTab: TabBarItem = .imageRec
+    @State var didOnboard: Bool = false
+    let persistenceController = PersistenceController.shared
+
+    
     var body: some View {
-        VStack
-        {
-          
-            HStack{
-               // Divider()
-                switch selectedTab {
-                case .imageRec:
-                    ImgeReco(viewModel: ViewModel())
-               // case .textRec:
-              //    TextRecView(viewModel: ViewModel())
-                case .History:
-                    HistoryView()
-                }
-            }
-//            Spacer()
-//            Divider()
-            
-            TabBarView(tabs: TabBarItem.allCases, selectedTab: $selectedTab)
-          
+        if didOnboard {
+            TabBarView()
+        } else {
+            OnBoardingView(didOnboard: $didOnboard)
         }
-        .padding(.bottom,-30)
     }
 }
 

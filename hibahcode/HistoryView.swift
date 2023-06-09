@@ -1,4 +1,5 @@
-//
+
+
 //  HistoryView.swift
 //  Recognizlator
 //
@@ -16,6 +17,7 @@ struct HistoryView: View {
         sortDescriptors: [],
     animation: .default)
     private var data: FetchedResults<History>
+    @State private var classificationLabel: String = ""
 
     func createImage(_ value: Data) -> Image {
         let songArtwork: UIImage = UIImage(data: value) ?? UIImage()
@@ -23,22 +25,38 @@ struct HistoryView: View {
     }
     var body: some View {
         NavigationView{
+//            NavigationLink {
+//
+//
+//            } label: {
+//                // existing contents…
+//            }
+
             List{
                 ForEach(data, id: \.self) { item in
                     
-                    VStack {
-                        HStack{
-                        createImage(item.picture!)
-                            .resizable()
-                            .frame(width: 50  , height: 50)
-                            //*
-                            VStack{
-                                Text(item.result ?? "Uknown")
-                                Text(item.translatedText ?? "Uknown")
+                    NavigationLink {
+                        //InformationView(landmark: Landmarkdata[0])
+                    
+                        
+                    } label: {
+                        VStack {
+                            HStack{
+                                createImage(item.picture ?? Data())
+                                .resizable()
+                                .frame(width: 50  , height: 50)
+                                //*
+                                
+                                    Text(item.result ?? "Uknown")
+                                
+                               
+                                
                             }
-                            
                         }
+
                     }
+
+           
                     
                  
                 }
@@ -86,4 +104,3 @@ struct HistoryView: View {
             HistoryView()
         }
     }
-   

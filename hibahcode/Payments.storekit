@@ -1,0 +1,59 @@
+{
+  "identifier" : "AEBED95D",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6449985649",
+    "_developerTeamID" : "U7539R3954",
+    "_lastSynchronizedDate" : 707784496.09170401
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21349416",
+      "localizations" : [
+
+      ],
+      "name" : "Group",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6449985905",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Access all app features",
+              "displayName" : "Monthly Access",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "وصول كامل لمميزات التطبيق",
+              "displayName" : "اشتراك شهري",
+              "locale" : "ar"
+            }
+          ],
+          "productID" : "monthly_pass",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly Access",
+          "subscriptionGroupID" : "21349416",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

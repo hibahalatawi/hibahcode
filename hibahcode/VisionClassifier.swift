@@ -13,7 +13,7 @@ import UIKit
 class VisionClassifier {
     
     private let model: VNCoreMLModel
-    private var completion: (String) -> Void = { _ in}
+    private var completion: ((String, Double) -> ())?
     
     private lazy var requsets: [VNCoreMLRequest] = {
         
@@ -22,20 +22,22 @@ class VisionClassifier {
         guard let results = requset.results as? [VNClassificationObservation] else {
             return
         }
-        
+            
         if !results.isEmpty {
             if let result = results.first {
-                self.completion(result.identifier)
+                self.completion!(result.identifier, Double(result.confidence))
+                //print("\(result.identifier) \((result.confidence * 100)) %")
             }
         }
     }
     
         requset.imageCropAndScaleOption = .centerCrop
+        requset.usesCPUOnly = true
         return [requset]
     
 }()
-
-    init?(mlModel:MLModel){
+    
+    init?(mlModel:MLModel) {
         if let model = try? VNCoreMLModel(for: mlModel){
             self.model = model
         } else {
@@ -43,7 +45,7 @@ class VisionClassifier {
         }
     }
     
-    func classify(_ image:UIImage, completion: @escaping (String) -> Void){
+    func classify(_ image:UIImage, completion: @escaping (String, Double) -> Void){
         
         self.completion = completion
         
