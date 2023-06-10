@@ -2,7 +2,7 @@
 //  ImagePredictor.swift
 //  hibahcode
 //
-//  Created by vdotup on 10/06/2023.
+//  CCreated by azizah alshami on 10/06/1444 AH.
 //
 
 import Foundation

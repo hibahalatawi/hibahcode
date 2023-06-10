@@ -36,7 +36,7 @@ struct paymentview: View {
                                 .foregroundColor(.white)
                                 .frame(width: 300, height: 50)
                                 .background(RoundedRectangle(cornerRadius: 15)
-                                    .fill(Color("pemantcolor"))
+                                    .fill(Color(red: 0.471, green: 0.756, blue: 0.701))
                                     .opacity(1)
                                 )
                         }
@@ -49,7 +49,7 @@ struct paymentview: View {
                         Text("Thank You :)")
                     }
                     .font(.title.bold())
-                    .foregroundColor(.pink)
+                    .foregroundColor(Color(red: 0.467, green: 0.756, blue: 0.705))
                     
                 }
                 //                if purchaseManager.hasUnlockedPro {
