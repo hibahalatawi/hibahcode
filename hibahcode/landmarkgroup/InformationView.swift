@@ -9,10 +9,15 @@
 
 import Foundation
 import SwiftUI
-
+import Firebase
+import FirebaseStorage
 
 
 struct InformationView: View{
+    
+    @EnvironmentObject private var auth: AuthViewModel
+    
+    @AppStorage("tries") var tries: Int = 0
     
     @StateObject var homeDataaa = HomeModelll()
     var detection: Detection
@@ -21,16 +26,16 @@ struct InformationView: View{
     // var landmark : landmark
     
     var body: some View {
-        VStack(spacing:25){
-            Text(detection.landmark.titlee)
-                .font(.system(size: 36, weight: .bold))
-                .multilineTextAlignment(.center)
-            Image(detection.landmark.imagee)
-                .resizable()
-                .clipped()
-                .frame(width: 360, height: 260)
-                .cornerRadius(14)
-            ScrollView{
+        ScrollView {
+            VStack(spacing:25){
+                Text(detection.landmark.titlee)
+                    .font(.system(size: 36, weight: .bold))
+                    .multilineTextAlignment(.center)
+                Image(detection.landmark.imagee)
+                    .resizable()
+                    .clipped()
+                    .frame(width: 360, height: 260)
+                    .cornerRadius(14)
                 
                 VStack(alignment: .leading , spacing:20){
                     
@@ -51,22 +56,66 @@ struct InformationView: View{
                     
                     
                     HStack(alignment: .center, spacing: 20){
-                        ForEach (detection.landmark.Otherimage.indices,id: \.self){index
-                            in
+                        ForEach(detection.landmark.Otherimage.indices,id: \.self) { index in
                             GimgeView( Index: index, landmark: detection.landmark, Otherimage: detection.landmark)
                         }}.padding(.all)
                     .frame(minWidth: 100)}
-            }}    .overlay (
-                // Image Viewer.
-                ZStack{
-                    if homeDataaa.showImageViewerr{
-                        imgviewotherimge(landmark: detection.landmark,Otherimage : detection.landmark)
-                        
-                    }})
-            .environmentObject (homeDataaa)
-            .onAppear {
-                handleData()
-            }
+                
+                }    .overlay (
+                    // Image Viewer.
+                    ZStack{
+                        if homeDataaa.showImageViewerr {
+                            imgviewotherimge(landmark: detection.landmark,Otherimage : detection.landmark)
+                            
+                        }})
+                .environmentObject (homeDataaa)
+                .onAppear {
+                    storeHistory()
+                    //handleData()
+                }
+        }
+    }
+    
+    private func storeHistory() {
+        
+        if let user = auth.user {
+            // apple signed in
+        } else {
+            // anonymous
+            tries += 1
+        }
+        
+        let db = Firestore.firestore()
+        
+        Task {
+            guard let currentUser = auth.currentUser else { return }
+            guard let imgURL = await uploadImage(image: detection.img) else { return }
+            try await db.collection("history").addDocument(data: [
+                "userID": currentUser.uid,
+                "date": FieldValue.serverTimestamp(),
+                "result": "",
+            ])
+        }
+        
+        
+        
+    }
+    
+    func uploadImage(image: UIImage) async -> URL? {
+        guard let data = image.jpegData(compressionQuality: 0.8) else { return nil }
+        let storageRef = Storage.storage().reference().child("\(UUID().uuidString).jpg")
+        
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpg"
+        
+        do {
+            let metaData = try await storageRef.putDataAsync(data, metadata: metaData)
+            print("uploaded")
+            return nil
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
     }
     
     func handleData() {

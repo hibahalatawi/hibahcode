@@ -41,7 +41,6 @@ struct LoginView: View {
                 .padding()
             }
         }
-        .onAppear(perform: auth.check)
     }
 }
 
