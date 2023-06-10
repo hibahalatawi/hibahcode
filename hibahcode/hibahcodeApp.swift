@@ -10,33 +10,48 @@ import Firebase
 
 @main
 struct hibahcodeApp: App {
-    let persistenceController = PersistenceController.shared
-        
-    @StateObject
-    private var entitlementManager: EntitlementManager
-
-    @StateObject
-    private var purchaseManager: PurchaseManager
-
+    //    @StateObject private var entitlementManager: EntitlementManager
+    //    @StateObject private var purchaseManager: PurchaseManager
+    
     init() {
-        let entitlementManager = EntitlementManager()
-        let purchaseManager = PurchaseManager(entitlementManager: entitlementManager)
-
-        self._entitlementManager = StateObject(wrappedValue: entitlementManager)
-        self._purchaseManager = StateObject(wrappedValue: purchaseManager)
+        //        let entitlementManager = EntitlementManager()
+        //        let purchaseManager = PurchaseManager(entitlementManager: entitlementManager)
+        //
+        //        self._entitlementManager = StateObject(wrappedValue: entitlementManager)
+        //        self._purchaseManager = StateObject(wrappedValue: purchaseManager)
         
-        FirebaseApp.initialize()
+        FirebaseApp.configure()
     }
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(purchaseManager)
-                .environmentObject(entitlementManager)
+                .environmentObject(AuthViewModel())
+                .environmentObject(StoreViewModel())
+            //                .environmentObject(purchaseManager)
+            //                .environmentObject(entitlementManager)
                 .task {
-                    await purchaseManager.updatePurchasedProducts()
+                    //await purchaseManager.updatePurchasedProducts()
+                    //await uploadLocalLandmarksToFirestore()
                 }
+        }
+    }
+    
+    private func uploadLocalLandmarksToFirestore() async {
+        let db = Firestore.firestore()
+        do {
+            for lm in Landmarkdata {
+                try await db.collection("landmarks").addDocument(data: [
+                    "title": lm.titlee,
+                    "tag": lm.tag,
+                    "place": lm.placee,
+                    "imageName": lm.imagee,
+                    "otherImages": lm.Otherimage,
+                    "description": lm.descriptionn
+                ])
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }

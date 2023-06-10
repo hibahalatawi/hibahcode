@@ -10,6 +10,7 @@ import StoreKit
 
 @MainActor
 class PurchaseManager: NSObject, ObservableObject {
+    
     private let proudctIds = ["monthly_pass"]
     
     @Published

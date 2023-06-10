@@ -70,19 +70,19 @@ struct InformationView: View{
     }
     
     func handleData() {
-        let context = PersistenceController.shared.container.viewContext
-        let newHistory = History(context: context)
-
-        newHistory.date = Date()
-        
-        let imageData = detection.img.jpegData(compressionQuality: 1.0)
-        newHistory.picture = imageData
-        
-        newHistory.result = detection.label
-        
-        newHistory.tries += 1
-        
-        PersistenceController.shared.save()
+//        let context = PersistenceController.shared.container.viewContext
+//        let newHistory = History(context: context)
+//
+//        newHistory.date = Date()
+//        
+//        let imageData = detection.img.jpegData(compressionQuality: 1.0)
+//        newHistory.picture = imageData
+//        
+//        newHistory.result = detection.label
+//        
+//        newHistory.tries += 1
+//        
+//        PersistenceController.shared.save()
    }
 }
 
