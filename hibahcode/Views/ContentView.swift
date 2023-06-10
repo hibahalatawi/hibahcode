@@ -21,15 +21,19 @@ struct ContentView: View {
 
     
     var body: some View {
-        if didOnboard {
-            if let user = auth.user {
-                TabBarView()
+        ZStack {
+            if didOnboard {
+                if auth.isLoggedIn {
+                    TabBarView()
+                } else {
+                    LoginView()
+                }
             } else {
-                LoginView()
+                OnBoardingView(didOnboard: $didOnboard)
             }
-        } else {
-            OnBoardingView(didOnboard: $didOnboard)
         }
+        .onAppear(perform: auth.check)
+        
     }
 }
 

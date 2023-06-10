@@ -16,12 +16,15 @@ class AuthViewModel: ObservableObject {
     let db = Firestore.firestore()
     let auth = Auth.auth()
     
+    @Published public var isLoggedIn: Bool = false
+    @Published public var currentUser: User?
     @Published public var user: UserData?
     @Published public var nonce: String = ""
     @Published public var networking: Bool = false
     
     @MainActor
     public func check() {
+        print("auth check")
         networking = true
         if let userObj = Auth.auth().currentUser {
             Task {
@@ -31,18 +34,33 @@ class AuthViewModel: ObservableObject {
                     if snapshot.documents.isEmpty {
                         print("no user document found")
                         try auth.signOut()
+                        try await auth.signInAnonymously()
+                        print("Signed in")
                     } else {
                         if let doc = snapshot.documents.first {
                             user = try doc.data(as: UserData.self)
                         }
                     }
+                    self.currentUser = userObj
+                    self.isLoggedIn = true
                 } catch {
                     print(error.localizedDescription)
                 }
                 networking = false
             }
         } else {
-            networking = false
+            Task {
+                do {
+                    let authResult = try await auth.signInAnonymously()
+                    self.currentUser = authResult.user
+                    self.isLoggedIn = true
+                    networking = false
+                } catch {
+                    print(error.localizedDescription)
+                    networking = false
+                }
+            }
+            
         }
     }
     
@@ -82,7 +100,6 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
-    
 }
 
 extension AuthViewModel {

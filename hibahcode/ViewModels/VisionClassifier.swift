@@ -24,9 +24,11 @@ class VisionClassifier {
         }
             
         if !results.isEmpty {
+            print(results.map { $0.confidence })
             if let result = results.first {
+                print("\(result.identifier) \((result.confidence * 100)) %")
                 self.completion!(result.identifier, Double(result.confidence))
-                //print("\(result.identifier) \((result.confidence * 100)) %")
+                
             }
         }
     }
@@ -51,9 +53,8 @@ class VisionClassifier {
         
         DispatchQueue.global().async {
             
-            guard let cjImage = image.cgImage else {
-                return
-            }
+            guard let resizedImage = image.resizeImageTo(size: .init(width: 299, height: 299)) else { return }
+            guard let cjImage = resizedImage.cgImage else { return }
             
             let handler = VNImageRequestHandler(cgImage: cjImage, options: [:])
             
@@ -63,5 +64,16 @@ class VisionClassifier {
                 print(error.localizedDescription)
             }
         }
+    }
+}
+
+extension UIImage {
+    
+    func resizeImageTo(size: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        self.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return resizedImage
     }
 }
