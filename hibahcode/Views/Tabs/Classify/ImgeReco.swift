@@ -11,6 +11,10 @@ import CoreML
 import Vision
 
 struct ImgeReco: View  {
+    
+    @EnvironmentObject private var storeVM: StoreViewModel
+    @EnvironmentObject private var auth: AuthViewModel
+    
     @State var isPresenting: Bool = false
     @State var uiImage: UIImage?
     @State private var showPhotoOptions: Bool = false
@@ -20,6 +24,7 @@ struct ImgeReco: View  {
     @State private var count : Int = 0
     @State private var classified : Bool = false
     @State private var detection: Detection?
+    @State private var showSubscriptionSheet: Bool = false
     
     //    @Environment(\.managedObjectContext) private var viewContext
     
@@ -94,13 +99,17 @@ struct ImgeReco: View  {
                     .foregroundColor(Color(red: 0.465, green: 0.76, blue: 0.701))
                     
                     if let detection = detection {
-                        NavigationLink(destination: InformationView(detection: detection))
-                        {
-                            Text("details")
-                                .padding()
-                                .foregroundColor(Color.white)
-                                .background(Color(red: 0.465, green: 0.76, blue: 0.701))
-                                .cornerRadius(10)
+                        if storeVM.purchasedSubscriptions.isEmpty && auth.tries > 5 {
+                            Button("Subscribe", action: { showSubscriptionSheet.toggle() })
+                        } else {
+                            NavigationLink(destination: InformationView(detection: detection))
+                            {
+                                Text("details")
+                                    .padding()
+                                    .foregroundColor(Color.white)
+                                    .background(Color(red: 0.465, green: 0.76, blue: 0.701))
+                                    .cornerRadius(10)
+                            }
                         }
                     }
                     
@@ -133,6 +142,9 @@ struct ImgeReco: View  {
                 },
                 .cancel()
             ])
+        }
+        .sheet(isPresented: $showSubscriptionSheet) {
+            paymentview()
         }
     }
     

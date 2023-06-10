@@ -10,11 +10,14 @@ import Firebase
 import FirebaseFirestoreSwift
 import AuthenticationServices
 import CryptoKit
+import SwiftUI
 
 class AuthViewModel: ObservableObject {
     
     let db = Firestore.firestore()
     let auth = Auth.auth()
+    
+    @AppStorage("tries") var tries: Int = 0
     
     @Published public var isLoggedIn: Bool = false
     @Published public var currentUser: User?

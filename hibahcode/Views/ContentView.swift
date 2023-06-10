@@ -14,10 +14,12 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject private var auth: AuthViewModel
     
+    @AppStorage("didOnboard") var didOnboard: Bool = false
     //@EnvironmentObject var purchaseManager: PurchaseManager
     @State var selectedTab: TabBarItem = .imageRec
     @State var loggedIn: Bool = false
-    @State var didOnboard: Bool = false
+    
+    //@State var didOnboard: Bool = false
     //let persistenceController = PersistenceController.shared
 
     

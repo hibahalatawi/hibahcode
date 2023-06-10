@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct TabBarView: View {
+    
+    //@EnvironmentObject private var auth: AuthViewModel
     //let persistenceController = PersistenceController.shared
 
     var body: some View {
@@ -30,10 +32,14 @@ struct TabBarView: View {
                     .tabItem {
                         Label("History", systemImage: "doc.richtext")
                     }
-                paymentview()
-                    .tabItem {
-                        Label("payment", systemImage: "doc.richtext")
-                    }
+                
+//                if auth.tries > 5 {
+//                    paymentview()
+//                        .tabItem {
+//                            Label("payment", systemImage: "doc.richtext")
+//                        }
+//                }
+                
             }
 //            .onAppear(){
 //                UITabBar.appearance().barTintColor = .white

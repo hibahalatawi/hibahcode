@@ -86,6 +86,7 @@ class StoreViewModel: ObservableObject {
                 switch transaction.productType {
                 case .autoRenewable:
                     if let subscription = subscriptions.first(where: { $0.id == transaction.productID }) {
+                        print("purchased")
                         purchasedSubscriptions.append(subscription)
                     }
                 default: break

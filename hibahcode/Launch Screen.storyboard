@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="hpA-kN-bjd">
-                                <rect key="frame" x="-315.66666666666669" y="-86" width="1024.3333333333333" height="1024"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
@@ -25,6 +24,10 @@
                         <constraints>
                             <constraint firstItem="hpA-kN-bjd" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="66K-yk-XAW"/>
                             <constraint firstItem="hpA-kN-bjd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Go9-6g-elc"/>
+                            <constraint firstAttribute="bottom" secondItem="hpA-kN-bjd" secondAttribute="bottom" id="O9b-8D-cIM"/>
+                            <constraint firstItem="hpA-kN-bjd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="PhY-K4-ib8"/>
+                            <constraint firstItem="hpA-kN-bjd" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="lu4-m9-bxD"/>
+                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="hpA-kN-bjd" secondAttribute="trailing" id="m4J-Wl-3eL"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -34,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="1024" height="1024"/>
+        <image name="logo" width="375" height="812"/>
     </resources>
 </document>

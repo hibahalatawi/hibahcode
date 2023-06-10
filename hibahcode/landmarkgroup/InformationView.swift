@@ -17,9 +17,9 @@ struct InformationView: View{
     
     @EnvironmentObject private var auth: AuthViewModel
     
-    @AppStorage("tries") var tries: Int = 0
-    
     @StateObject var homeDataaa = HomeModelll()
+    
+    
     var detection: Detection
 //    var landmark : landmark
 //    var Otherimage : landmark
@@ -74,15 +74,19 @@ struct InformationView: View{
                     //handleData()
                 }
         }
+        
     }
     
     private func storeHistory() {
+        
+        if auth.tries <= 5 {
+            auth.tries += 1
+        }
         
         if let user = auth.user {
             // apple signed in
         } else {
             // anonymous
-            tries += 1
         }
         
         let db = Firestore.firestore()
