@@ -11,12 +11,12 @@ import SwiftUI
 import CoreData
 
 struct HistoryView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    //@Environment(\.managedObjectContext) private var viewContext
 //    @FetchRequest(entity: History.entity(), sortDescriptors: []) var data: FetchedResults<History>
-    @FetchRequest(
-        sortDescriptors: [],
-    animation: .default)
-    private var data: FetchedResults<History>
+//    @FetchRequest(
+//        sortDescriptors: [],
+//    animation: .default)
+    //private var data: FetchedResults<History>
     @State private var classificationLabel: String = ""
 
     func createImage(_ value: Data) -> Image {
@@ -33,21 +33,23 @@ struct HistoryView: View {
 //            }
 
             List{
-                ForEach(data, id: \.self) { item in
+                ForEach(0..<10, id: \.self) { item in
                     
                     NavigationLink {
+                        Text("Item")
                         //InformationView(landmark: Landmarkdata[0])
                     
                         
                     } label: {
                         VStack {
                             HStack{
-                                createImage(item.picture ?? Data())
+                                //createImage(item.picture ?? Data())
+                                Image(systemName: "heart")
                                 .resizable()
                                 .frame(width: 50  , height: 50)
                                 //*
                                 
-                                    Text(item.result ?? "Uknown")
+                                    Text("Uknown")
                                 
                                
                                 
@@ -60,11 +62,11 @@ struct HistoryView: View {
                     
                  
                 }
-                .onDelete(perform: deleteItems)
+                //.onDelete(perform: deleteItems)
             }
-            .onAppear(perform: {
-                print(data.count)
-            })
+//            .onAppear(perform: {
+//                print(data.count)
+//            })
             .listStyle(PlainListStyle())
             .navigationTitle("History")
             .toolbar {
@@ -82,19 +84,19 @@ struct HistoryView: View {
         }
         
     }
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { data[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-            
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
+//    private func deleteItems(offsets: IndexSet) {
+//        withAnimation {
+//            offsets.map { data[$0] }.forEach(viewContext.delete)
+//
+//            do {
+//                try viewContext.save()
+//            } catch {
+//
+//                let nsError = error as NSError
+//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//            }
+//        }
+//    }
     
 }
     

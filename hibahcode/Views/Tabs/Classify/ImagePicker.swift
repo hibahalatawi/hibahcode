@@ -1,5 +1,5 @@
 //
-//  imagePicker.swift
+//  ImagePicker.swift
 //  Project2030
 //
 //  Created by azizah ahmed alshami on 03/11/1444 AH.
@@ -55,7 +55,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     
 }
 
-struct Previews_imagePicker_Previews: PreviewProvider {
+struct Previews_ImagePicker_Previews: PreviewProvider {
     static var previews: some View {
         /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }

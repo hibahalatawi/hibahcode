@@ -64,14 +64,14 @@ struct ImgeReco: View  {
                         .accentColor(.white)
                         .font(Font.custom("SF Pro", size: 18))
                         .frame(width: 270 , height: 50)
-                        .background(RoundedRectangle(cornerRadius: 15 ).fill(Color(red: 0.465, green: 0.76, blue: 0.701)).opacity(1))
+                        .background(RoundedRectangle(cornerRadius: 15).fill(Color(red: 0.465, green: 0.76, blue: 0.701)).opacity(1))
                         
                         
                     }
                     
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.horizontal, 12)
+                .padding(12)
            
                 
                 if classified {
