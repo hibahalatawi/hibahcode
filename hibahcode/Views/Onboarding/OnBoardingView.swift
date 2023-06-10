@@ -2,7 +2,7 @@
 //  OnBoardingView.swift
 //  Project2030
 //
-//  Created by azizah ahmed alshami on 03/11/1444 AH.
+//  Created by azizah ahmed alshami on 03/05/1444 AH.
 //
 
 import SwiftUI

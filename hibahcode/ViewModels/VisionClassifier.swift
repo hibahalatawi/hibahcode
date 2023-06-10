@@ -2,7 +2,7 @@
 //  VisionClassifier.swift
 //  Recognizlator
 //
-//  Created by sara ayed albogami on 21/07/1444 AH.
+//  Created by azizah alshami on 21/05/1444 AH.
 //
 
 import Foundation
