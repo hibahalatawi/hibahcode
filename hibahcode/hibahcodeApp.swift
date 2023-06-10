@@ -32,7 +32,7 @@ struct hibahcodeApp: App {
             //                .environmentObject(entitlementManager)
                 .task {
                     //await purchaseManager.updatePurchasedProducts()
-                    //await uploadLocalLandmarksToFirestore()
+                   // await uploadLocalLandmarksToFirestore()
                 }
         }
     }

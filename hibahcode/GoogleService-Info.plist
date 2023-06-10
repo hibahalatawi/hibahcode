@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>928170606233-8keae6roa0kjlmb2jr9nl55daq096bd2.apps.googleusercontent.com</string>
+	<string>711824148044-7g0u1hcv1jd5tvd48aued7l0gn3vvo0q.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.928170606233-8keae6roa0kjlmb2jr9nl55daq096bd2</string>
+	<string>com.googleusercontent.apps.711824148044-7g0u1hcv1jd5tvd48aued7l0gn3vvo0q</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDKEsE6SJd6PriqqV9sJLXFx6Nsp5fCijc</string>
+	<string>AIzaSyALXYB30-w1_9mU6E95xnLnXZZYmrvS2KQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>928170606233</string>
+	<string>711824148044</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>hibah.hibahcode1</string>
+	<string>hibah.hibahcode22</string>
 	<key>PROJECT_ID</key>
-	<string>hibahcode</string>
+	<string>pictoproject-11ee6</string>
 	<key>STORAGE_BUCKET</key>
-	<string>hibahcode.appspot.com</string>
+	<string>pictoproject-11ee6.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:928170606233:ios:279fb64fb253a1cdbf8208</string>
+	<string>1:711824148044:ios:f64333f14135a69d3f16e9</string>
 </dict>
 </plist>
