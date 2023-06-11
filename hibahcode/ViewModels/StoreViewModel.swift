@@ -19,6 +19,7 @@ class StoreViewModel: ObservableObject {
     @Published var subscriptionsGroupStatus: StoreKit.Product.SubscriptionInfo.RenewalState?
     
     init() {
+        print("Store INIT")
         updateListenerTask = listenForTransactions()
         Task {
             await requestProducts()
