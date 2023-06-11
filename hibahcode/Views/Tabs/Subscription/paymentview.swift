@@ -16,15 +16,16 @@ struct paymentview: View {
     
     var body: some View {
         ZStack {
+            //هنا صورة الشراء
             Image("0")
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
             
             VStack(spacing: 20) {
-                Text("Purchase")
+//                Text("Purchase")
                 if storeVM.purchasedSubscriptions.isEmpty {
-                    Text("Not Purchased")
+//                    Text("Not Purchased")
                     
                     ForEach(storeVM.subscriptions)  { product in
                         Button {
