@@ -8,10 +8,17 @@
 
 import SwiftUI
 
+extension String {
+    var localized: LocalizedStringKey {
+        return LocalizedStringKey(self)
+    }
+}
+
 struct TabBarView: View {
     
-    //@EnvironmentObject private var auth: AuthViewModel
+    @EnvironmentObject private var storeVM: StoreViewModel
     //let persistenceController = PersistenceController.shared
+
 
     var body: some View {
         
@@ -19,7 +26,7 @@ struct TabBarView: View {
             TabView {
                 ImgeReco()
                     .tabItem {
-                        Label("camera", systemImage: "camera.viewfinder")
+                        Label("Camera", systemImage: "camera.viewfinder")
                     }
                     //.environment(\.managedObjectContext, persistenceController.container.viewContext)
                     
@@ -41,6 +48,7 @@ struct TabBarView: View {
 //                }
                 
             }
+            .tint(storeVM.purchasedSubscriptions.isEmpty ? Color.red : Color.teal)
 //            .onAppear(){
 //                UITabBar.appearance().barTintColor = .white
 //            }

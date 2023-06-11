@@ -28,7 +28,6 @@ struct ContentView: View {
             if didOnboard {
                 if auth.isLoggedIn {
                     TabBarView()
-                        .environmentObject(StoreViewModel())
                 } else {
                     LoginView()
                 }

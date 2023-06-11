@@ -99,7 +99,6 @@
 		04B8C01C2A2F215C00269826 /* GridImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridImageView.swift; sourceTree = "<group>"; };
 		04B8C01E2A2F21A400269826 /* listOf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOf.swift; sourceTree = "<group>"; };
 		38AF44CB2A35A71700507D34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		38AF44CD2A35A80600507D34 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77450AB12A2FEF2B0013F03C /* Payments.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Payments.storekit; sourceTree = "<group>"; };
 		77ABE35D2A2F9ACB0042776E /* paymentview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paymentview.swift; sourceTree = "<group>"; };
 		9B27B0432A33473300A9D371 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -461,7 +460,6 @@
 			knownRegions = (
 				en,
 				Base,
-				ar,
 			);
 			mainGroup = FFA8ABD82A2723E30008B0D2;
 			packageReferences = (
@@ -603,7 +601,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				38AF44CB2A35A71700507D34 /* en */,
-				38AF44CD2A35A80600507D34 /* ar */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
