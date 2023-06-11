@@ -163,7 +163,7 @@ struct ImgeReco: View  {
             
 //             perform image classification
             self.classifier?.classify(img) { label, confidence in
-                if confidence > 0.1 {
+                if confidence > 0.8 {
                     if let landmark = Landmarkdata.first(where: { $0.tag.contains(label)} ) {
                         self.detection = Detection(img: img, label: label, landmark: landmark)
                         self.classified = true

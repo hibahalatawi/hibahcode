@@ -48,11 +48,11 @@ struct TabBarView: View {
 //                }
                 
             }
-            .tint(storeVM.purchasedSubscriptions.isEmpty ? Color.red : Color.teal)
+           // .tint(storeVM.purchasedSubscriptions.isEmpty ? Color.red : Color.teal)
 //            .onAppear(){
 //                UITabBar.appearance().barTintColor = .white
 //            }
-//            .accentColor(Color(red: 0.475, green: 0.764, blue: 0.704))
+        .accentColor(Color(red: 0.475, green: 0.764, blue: 0.704))
             
         }
     }

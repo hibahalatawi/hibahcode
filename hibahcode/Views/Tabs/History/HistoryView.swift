@@ -55,9 +55,9 @@ struct HistoryView: View {
                                         .resizable()
                                         .frame(width: 50, height: 50)
                                         .cornerRadius(12)
-                                    Text(item.result)
+                                    Text(item.result).font(.caption.bold())
                                     Spacer()
-                                    Text(item.date)
+                                    Text(item.date).font(.caption.bold())
                                 }
                                 
                             }
