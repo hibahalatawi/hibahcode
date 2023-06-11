@@ -92,15 +92,17 @@ let Landmarkdata: [landmark] = [
         titlee: "Grammel Al-Ula",
         tag: "Grammel Al-Ula",
         placee: "Al-Ula",
-        imagee: "",
-        descriptionn: "",Otherimage:["",""]),
+        imagee: "gr1",
+        descriptionn: "About an hour outside of the city centre, discover dark, thin pillars of stone stretching up to the sky. This is AlGharameel. You’ll need to go off-road to reach the site, so we recommend hiring an experienced driver with a four-wheel-drive vehicle. Your reward is a view unlike any other, made even more dramatic at night when AlUla’s dark skies showcase a brilliant display of stars above the rocks. Stargazing packages welcome you to gaze at AlGharameel’s stone pillars and follow their spires upward toward the twinkling stars.",
+Otherimage:["gr2","gr3","gr4","gr5"]),
     
     landmark(
         titlee: "Ithra Adamam",
         tag: "Ithra Adamam",
         placee: "ALdamam",
-        imagee: "",
-        descriptionn: "", Otherimage: ["",""]),
+        imagee: "al1",
+        descriptionn: "The King Abdulaziz Center for World Culture (Ithra)—meaning 'enrichment' in Arabic—was built as part of Saudi Aramco’s vision to be an ambitious initiative for the public. Ithra is the Kingdom’s leading cultural and creative destination for talent development and cross-cultural experiences. Since its opening in 2018, each attraction by Ithra serves as a window to global experiences, celebrating human potential and empowering creativity.The pillars include culture, creativity, community, art, and knowledge. With the visionary platforms and key pillars, Ithra continuously offers inspiring workshops, performances, and events. The King Abdulaziz Center for World Culture (Ithra) was chosen by TIME magazine among the world’s top 100 must-visit sites for 2018. The US magazine listed landmarks in 48 countries, of which five Arab locations were featured including Ithra, Abu Dhabi’s Louvre and Warner World, Morocco’s Qarawiyin Library and Marriott Mena House Hotel in Egypt.Commenting on this, Prince Badr bin Abdullah bin Farhan Al Saud, Minister of Culture, said that this achievement is dedicated to the Saudi leadership, the primary supporter of culture. Ithra was launched by Saudi Aramco in 2016 as an all-purpose cultural destination. The King Abdulaziz Center for World Culture (Ithra) is encouraged by the achievements of a successful year and vows to build on its increased impact in 2022. Ithra enriched the lives of more than 500,000 people over the course of 2021, with 7,000 programs attended by physical and virtual visitors, leading to the center’s recognition of five international and local awards.",
+ Otherimage: ["al2","al3","al4","al5"]),
     
     landmark(
         
