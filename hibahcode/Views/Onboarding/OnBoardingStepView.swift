@@ -61,7 +61,7 @@ struct OnBoardingStepView: View {
             }
             Spacer()
         }
-        .padding(.top, 40)
+        .padding(.top, 10)
     }
 }
 
