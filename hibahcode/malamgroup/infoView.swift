@@ -16,7 +16,7 @@ struct infoView: View {
         ScrollView{
         VStack(spacing:25){
             Text(malm.title)
-            Text("1")
+            
                 .font(.system(size: 36, weight: .bold))
                 .multilineTextAlignment(.center)
             Image(malm.image)
