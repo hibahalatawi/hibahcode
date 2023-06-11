@@ -19,7 +19,7 @@ struct OnBoardingStepView: View {
     @Binding var didOnboard: Bool
     
     var body: some View {
-        VStack{
+        VStack {
             Image(step.image)
                 .resizable()
                 .frame(width:375 ,height: 380)
@@ -59,8 +59,9 @@ struct OnBoardingStepView: View {
             .fontWeight(.bold)
             .buttonStyle(PlainButtonStyle())
             }
-            
+            Spacer()
         }
+        .padding(.top, 40)
     }
 }
 
