@@ -14,6 +14,7 @@
 		04B8C01B2A2F213D00269826 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8C01A2A2F213D00269826 /* PhotoView.swift */; };
 		04B8C01D2A2F215C00269826 /* GridImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8C01C2A2F215C00269826 /* GridImageView.swift */; };
 		04B8C01F2A2F21A400269826 /* listOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B8C01E2A2F21A400269826 /* listOf.swift */; };
+		38AF44CA2A35A71700507D34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38AF44CC2A35A71700507D34 /* Localizable.strings */; };
 		77ABE35E2A2F9ACB0042776E /* paymentview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77ABE35D2A2F9ACB0042776E /* paymentview.swift */; };
 		9B27B0392A33464700A9D371 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9B27B0382A33464700A9D371 /* FirebaseAuth */; };
 		9B27B03B2A33464700A9D371 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9B27B03A2A33464700A9D371 /* FirebaseFirestore */; };
@@ -97,6 +98,8 @@
 		04B8C01A2A2F213D00269826 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		04B8C01C2A2F215C00269826 /* GridImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridImageView.swift; sourceTree = "<group>"; };
 		04B8C01E2A2F21A400269826 /* listOf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listOf.swift; sourceTree = "<group>"; };
+		38AF44CB2A35A71700507D34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		38AF44CD2A35A80600507D34 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77450AB12A2FEF2B0013F03C /* Payments.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Payments.storekit; sourceTree = "<group>"; };
 		77ABE35D2A2F9ACB0042776E /* paymentview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paymentview.swift; sourceTree = "<group>"; };
 		9B27B0432A33473300A9D371 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -319,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				FFAEC9D92A3498480037AD21 /* GoogleService-Info.plist */,
+				38AF44CC2A35A71700507D34 /* Localizable.strings */,
 				9BA8872B2A348C3E0015D30C /* Launch Screen.storyboard */,
 				9BA8871F2A3486180015D30C /* Views */,
 				9BA8871E2A34844E0015D30C /* ViewModels */,
@@ -457,6 +461,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = FFA8ABD82A2723E30008B0D2;
 			packageReferences = (
@@ -478,6 +483,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38AF44CA2A35A71700507D34 /* Localizable.strings in Resources */,
 				FFA8AC332A2726DE0008B0D2 /* Assets.xcassets in Resources */,
 				FFA8ABEC2A2723E40008B0D2 /* Preview Assets.xcassets in Resources */,
 				FFAEC9DA2A3498480037AD21 /* GoogleService-Info.plist in Resources */,
@@ -592,11 +598,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		38AF44CC2A35A71700507D34 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38AF44CB2A35A71700507D34 /* en */,
+				38AF44CD2A35A80600507D34 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		FFA8AC092A2723E40008B0D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -657,6 +676,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -717,7 +737,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"hibahcode/Preview Content\"";
-				DEVELOPMENT_TEAM = 8P4ARXG8LG;
+				DEVELOPMENT_TEAM = 5B7QT3F769;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hibahcode/Info.plist;
@@ -735,7 +755,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hibah.hibahcode22;
+				PRODUCT_BUNDLE_IDENTIFIER = azizah.alshami;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -757,7 +777,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"hibahcode/Preview Content\"";
-				DEVELOPMENT_TEAM = 8P4ARXG8LG;
+				DEVELOPMENT_TEAM = 5B7QT3F769;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hibahcode/Info.plist;
@@ -775,7 +795,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hibah.hibahcode22;
+				PRODUCT_BUNDLE_IDENTIFIER = azizah.alshami;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

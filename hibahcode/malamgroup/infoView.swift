@@ -13,6 +13,7 @@ struct infoView: View {
     var malm : malm
     var Gimage : malm
     var body: some View {
+        ScrollView{
         VStack(spacing:25){
             Text(malm.title)
                 .font(.system(size: 36, weight: .bold))
@@ -22,7 +23,7 @@ struct infoView: View {
                 .clipped()
                 .frame(width: 360, height: 260)
                 .cornerRadius(14)
-            ScrollView{
+            
                 
                 VStack(alignment: .leading , spacing:20){
                     

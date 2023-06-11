@@ -17,7 +17,7 @@ struct OnBoardingView: View {
             id: 0,
             image: "pic1",
             title: "KNOW THE STORY FROM ONE STEP",
-            description: "Pictures of Any Historical Landmark And It Will Show You Information About It"
+            description: "Pictures of any Historical Landmark and it Will Show you Information About it"
         ),
         OnBoardingStep(
             id: 1,

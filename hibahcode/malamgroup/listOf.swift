@@ -13,13 +13,6 @@ struct listOf: View {
     var body: some View {
         
         NavigationStack{
-//            VStack{
-//                Text("Exploer")
-//                    .font(.title)
-//                    .fontWeight(.bold)
-//                    .foregroundColor(Color.black)
-//                    .padding(.leading, -200.0)
-//
             
             
                     VStack(alignment: .leading){
