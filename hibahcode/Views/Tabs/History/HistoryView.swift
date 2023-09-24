@@ -92,7 +92,7 @@ struct HistoryView: View {
                 }
             }
             .listStyle(PlainListStyle())
-            .navigationTitle("History")
+            .navigationTitle("history")
             .toolbar {
 //                ToolbarItem(placement: .navigationBarTrailing) {
 //                    EditButton()

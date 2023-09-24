@@ -16,10 +16,10 @@ struct listOf: View {
             
             
                     VStack(alignment: .leading){
-                        Text("Discover various sight in Saudi Arabia").font(.system(size: 28, weight: .semibold)).foregroundColor(Color.black).padding(.leading).frame(width:230.0,height: 140.4)
+                        Text("discoverTitle").font(.system(size: 28, weight: .semibold)).foregroundColor(Color.black).padding(.leading).frame(width:230.0,height: 140.4)
                         
                         VStack(alignment: .leading, spacing:10){
-                            Text("Trending").font(.system(size: 24, weight: .semibold)).foregroundColor(Color(hue: 0.471, saturation: 0.469, brightness: 0.56)).padding(.leading)
+                            Text("trending").font(.system(size: 24, weight: .semibold)).foregroundColor(Color(hue: 0.471, saturation: 0.469, brightness: 0.56)).padding(.leading)
                         
                             ScrollView(.horizontal){
                                 

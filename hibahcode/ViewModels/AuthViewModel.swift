@@ -34,12 +34,14 @@ class AuthViewModel: ObservableObject {
                 do {
                     print("saved login", userObj.uid)
                     let snapshot = try await db.collection("users").whereField("uid", isEqualTo: userObj.uid).getDocuments(source: .server)
+                    print(snapshot.count)
                     if snapshot.documents.isEmpty {
                         print("no user document found")
 //                        try auth.signOut()
-//                        try await auth.signInAnonymously()
+                        try await auth.signInAnonymously()
                         print("Signed in")
                     } else {
+                        print("user doc found")
                         if let doc = snapshot.documents.first {
                             user = try doc.data(as: UserData.self)
                         }

@@ -2,10 +2,23 @@
   Localizable.strings
   hibahcode
 
-  Created by azizah ahmed alshami on 22/11/1444 AH.
+  Created by vdotup on 24/09/2023.
   
 */
 
-"Camera" = "الكاميرا";
-"History" = "المحفوظات";
-"Explore" = "استكشف";
+"camera" = "الكاميرا";
+"history" = "السجل";
+"explore" = "تصفح";
+
+"uploadPicture" = "اختيار صورة";
+
+"selectPhoto" = "اختيار صورة";
+"choose" = "اختيار";
+
+"camera" = "الكاميرا";
+"library" = "مكتبة الصور";
+
+"details" = "التفاصيل";
+
+"discoverTitle" = "اكتشف المعالم المتنوعة في المملكة العربية السعودية";
+"trending" = "الأكثر شهرة";

@@ -17,8 +17,6 @@ extension String {
 struct TabBarView: View {
     
     @EnvironmentObject private var storeVM: StoreViewModel
-    //let persistenceController = PersistenceController.shared
-
 
     var body: some View {
         
@@ -26,34 +24,18 @@ struct TabBarView: View {
             TabView {
                 ImgeReco()
                     .tabItem {
-                        Label("Camera", systemImage: "camera.viewfinder")
+                        Label("camera", systemImage: "camera.viewfinder")
                     }
-                    //.environment(\.managedObjectContext, persistenceController.container.viewContext)
-                    
                 
                 listOf()
                     .tabItem {
-                        Label("Explore", systemImage: "safari")
+                        Label("explore", systemImage: "safari")
                     }
                 HistoryView()
                     .tabItem {
-                        Label("History", systemImage: "doc.richtext")
+                        Label("history", systemImage: "doc.richtext")
                     }
-                
-//                if auth.tries > 5 {
-//                    paymentview()
-//                        .tabItem {
-//                            Label("payment", systemImage: "doc.richtext")
-//                        }
-//                }
-                
             }
-            .tint(storeVM.purchasedSubscriptions.isEmpty ? Color.red : Color.teal)
-//            .onAppear(){
-//                UITabBar.appearance().barTintColor = .white
-//            }
-//            .accentColor(Color(red: 0.475, green: 0.764, blue: 0.704))
-            
         }
     }
 }

@@ -16,14 +16,10 @@ import FirebaseStorage
 struct InformationView: View{
     
     @EnvironmentObject private var auth: AuthViewModel
-    @EnvironmentObject private var storeVM: StoreViewModel
     @StateObject var homeDataaa = HomeModelll()
     
     
     var detection: Detection
-    //    var landmark : landmark
-    //    var Otherimage : landmark
-    // var landmark : landmark
     
     var body: some View {
         ScrollView {
@@ -82,15 +78,10 @@ struct InformationView: View{
             auth.tries += 1
         }
         
-        if storeVM.purchasedSubscriptions.isEmpty {
-            return
-        }
-        
         let db = Firestore.firestore()
         
         Task {
             guard let currentUser = auth.currentUser else { return }
-//            guard let imgURL = await uploadImage(image: detection.img) else { return }
             try await db.collection("history").addDocument(data: [
                 "userID": currentUser.uid,
                 "date": Date().formatted(),
@@ -100,39 +91,6 @@ struct InformationView: View{
         
         
         
-    }
-    
-//    func uploadImage(image: UIImage) async -> URL? {
-//        guard let data = image.jpegData(compressionQuality: 0.8) else { return nil }
-//        let storageRef = Storage.storage().reference().child("\(UUID().uuidString).jpg")
-//
-//        let metaData = StorageMetadata()
-//        metaData.contentType = "image/jpg"
-//
-//        do {
-//            let metaData = try await storageRef.putDataAsync(data, metadata: metaData)
-//            print("uploaded")
-//            return nil
-//        } catch {
-//            print(error.localizedDescription)
-//            return nil
-//        }
-//    }
-    
-    func handleData() {
-        //        let context = PersistenceController.shared.container.viewContext
-        //        let newHistory = History(context: context)
-        //
-        //        newHistory.date = Date()
-        //
-        //        let imageData = detection.img.jpegData(compressionQuality: 1.0)
-        //        newHistory.picture = imageData
-        //
-        //        newHistory.result = detection.label
-        //
-        //        newHistory.tries += 1
-        //
-        //        PersistenceController.shared.save()
     }
 }
 

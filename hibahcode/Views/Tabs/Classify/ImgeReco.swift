@@ -12,7 +12,6 @@ import Vision
 
 struct ImgeReco: View  {
     
-    @EnvironmentObject private var storeVM: StoreViewModel
     @EnvironmentObject private var auth: AuthViewModel
     
     @State var isPresenting: Bool = false
@@ -26,23 +25,10 @@ struct ImgeReco: View  {
     @State private var detection: Detection?
     @State private var showSubscriptionSheet: Bool = false
     
-    //    @Environment(\.managedObjectContext) private var viewContext
-    
-    
     private let classifier = VisionClassifier(mlModel: CoreMLAZ2030().model)
-    
-    
     
     var body: some View {
         VStack {
-            //                ZStack {
-            //                    Text("Image")
-            //                        .font(.largeTitle)
-            //                        .fontWeight(.bold)
-            //                        .foregroundColor(Color.black)
-            //                        .padding(.bottom, -20.0)
-            //                        .padding(.leading, -180.0)
-            //                }
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(Color(red: 0.471, green: 0.76, blue: 0.705), style: StrokeStyle(lineWidth: 2, dash: [9]))
@@ -51,11 +37,10 @@ struct ImgeReco: View  {
                     Image(uiImage: uiImage!)
                         .resizable()
                         .cornerRadius(15)
-                    // .stroke(Color("CusColor"), style: StrokeStyle(lineWidth: 2, dash: [9]))
                 } else {
                     
                     Button(action: { showSheet.toggle() }) {
-                        Label("Upload a Picture", systemImage: "plus")
+                        Label("uploadPicture", systemImage: "plus")
                     }
                     .accentColor(.white)
                     .font(Font.custom("SF Pro", size: 18))
@@ -87,8 +72,6 @@ struct ImgeReco: View  {
                 
             }
             
-            //.frame(height: 35)
-            
             if uiImage != nil {
                 HStack {
                     Button(action: { showSheet.toggle() }) {
@@ -99,17 +82,13 @@ struct ImgeReco: View  {
                     .foregroundColor(Color(red: 0.465, green: 0.76, blue: 0.701))
                     
                     if let detection = detection {
-                        if storeVM.purchasedSubscriptions.isEmpty && auth.tries > 5 {
-                            Button("Subscribe", action: { showSubscriptionSheet.toggle() })
-                        } else {
-                            NavigationLink(destination: InformationView(detection: detection))
-                            {
-                                Text("details")
-                                    .padding()
-                                    .foregroundColor(Color.white)
-                                    .background(Color(red: 0.465, green: 0.76, blue: 0.701))
-                                    .cornerRadius(10)
-                            }
+                        NavigationLink(destination: InformationView(detection: detection))
+                        {
+                            Text("details")
+                                .padding()
+                                .foregroundColor(Color.white)
+                                .background(Color(red: 0.465, green: 0.76, blue: 0.701))
+                                .cornerRadius(10)
                         }
                     }
                     
@@ -129,13 +108,13 @@ struct ImgeReco: View  {
             
         }
         .actionSheet(isPresented: $showSheet) {
-            ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
-                .default(Text("Photo Library")) {
+            ActionSheet(title: Text("selectPhoto"), message: Text(""), buttons: [
+                .default(Text("library")) {
                     // open photo library
                     self.sourceType = .photoLibrary
                     self.isPresenting = true
                 },
-                .default(Text("Camera")) {
+                .default(Text("camera")) {
                     // open camera
                     self.sourceType = .camera
                     self.isPresenting = true
